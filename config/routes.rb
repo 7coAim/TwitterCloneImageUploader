@@ -1,3 +1,9 @@
 Rails.application.routes.draw do
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+  root to: 'twtexts#index'
+  get '/twtexts', to: 'twtexts#index'
+  resources :twtexts do
+    collection do
+      post :confirm
+    end
+  end
 end

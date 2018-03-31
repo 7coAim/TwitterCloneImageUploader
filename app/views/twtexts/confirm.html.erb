@@ -1,0 +1,12 @@
+<h3>以下のようにつぶやきます</h3>
+
+<%= form_with(model: @twtext, url: twtexts_path, local: true) do |form| %>
+  <%= form.hidden_field :content %>
+  <p>つぶやき：<%= @twtext.content %></p>
+  <%= form.submit "つぶやく" %>
+<% end %>
+
+<%= form_with(model: @twtext, url: new_twtext_path, local: true, method: 'get') do |form| %>
+  <%= form.hidden_field :content %>
+  <%= form.submit "もどる", name: 'back' %>
+<% end %>

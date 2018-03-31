@@ -1,0 +1,17 @@
+<h1>つぶやき一覧</h1>
+<p><%= notice %></p>
+<table>
+  <tr>
+    <th>コンテンツ</th>
+    <th>編集</th>
+    <th>削除</th>
+  </tr>
+  <% @twtexts.each do |twtext| %>
+    <tr>
+      <td><%= twtext.content %></td>
+      <td><%= link_to '編集', edit_twtext_path(twtext.id) %></td>
+      <td><%= link_to '削除', twtext_path(twtext.id), method: :delete ,data: { confirm: 'つぶやきを本当に削除しますか？' } %></td>
+    </tr>
+  <% end %>
+</table>
+<%= link_to 'つぶやく', new_twtext_path %>
