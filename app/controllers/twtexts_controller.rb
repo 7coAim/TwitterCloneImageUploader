@@ -1,6 +1,6 @@
 class TwtextsController < ApplicationController
 
-  before_action :set_tetext, only: [:edit, :update, :destroy]
+  before_action :set_twtext, only: [:edit, :update, :destroy]
 
   def index
     @twtexts = Twtext.all
