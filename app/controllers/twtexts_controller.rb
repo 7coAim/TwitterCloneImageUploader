@@ -30,7 +30,7 @@ class TwtextsController < ApplicationController
     @twtext = Twtext.new(twtext_params)
     if @twtext.save
       # 一覧画面へ遷移し
-      redirect_to twtexts_path, notice: "つぶやきを投稿しました"
+      redirect_to twtexts_path, notice: "新しいつぶやきを投稿しました"
     else
       # 入力フォームを再描画
       render 'new'
@@ -44,7 +44,7 @@ class TwtextsController < ApplicationController
 
   def destroy
     @twtext.destroy
-    redirect_to twtexts_path, notice:"つぶやきを削除しました"
+    redirect_to twtexts_path, notice: "つぶやきを削除しました"
   end
 
   private

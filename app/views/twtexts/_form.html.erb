@@ -1,21 +1,23 @@
-<%= form_with(model: @twtext, local: true ,url: choose_new_or_edit ) do |form| %>
+<%= form_with(model: @twtext, local: true ,url: choose_new_or_edit, class: 'new_twtext_form' ) do |form| %>
 
-  <% if @twtext.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= @twtext.errors.count %>件のエラーがあります。</h2>
-      <ul>
-        <% @twtext.errors.full_messages.each do |msg| %>
-          <li><%= msg %></li>
-        <% end %>
-      </ul>
-    </div>
-  <% end %>
-
-  <div class="twtext_content">
-    <%= form.label :content %>
-    <%= form.text_area :content %>
+<% if @twtext.errors.any? %>
+  <div class="alert alert-danger alert-dismissible" role="alert">
+    <button type="button" class="close" data-dismiss="alert" aria-label="閉じる">
+      <span aria-hidden="true">×</span></button>
+    <strong><%= @twtext.errors.count %>件のエラー</strong>
+    <ul>
+      <% @twtext.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+    </ul>
   </div>
-
-  <%= form.submit %>
 <% end %>
-<%= link_to "つぶやき一覧にもどる", twtexts_path %>
+
+<div class="new_twtext_area input-group input-group-lg">
+  <span class="input-group-addon">つぶやき内容</span>
+  <%= form.text_area :content, class: 'form-control', placeholder: "ここに140文字以内で入力してください" %>
+</div>
+<div class="pull-right">
+  <%= form.submit "送信する", class: 'btn btn-primary btn-lg' %>
+</div>
+<% end %>
