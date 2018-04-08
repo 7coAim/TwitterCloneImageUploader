@@ -1,6 +1,6 @@
-# README
+## README
 
-## 課題要件
+### 課題要件
 * Ruby on Railsを使ったアプリケーションであること
 * HTML,CSSを使用して、見本程度の最低限のフロント部分（header,footer,topページ）を作成すること。（JavaScriptは余裕があれば実装する程度で構わない。高度なデザインにしたい場合はbootstrapなどのフレームワークを使用しても構わない。）
 
