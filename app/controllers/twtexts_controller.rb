@@ -2,6 +2,10 @@ class TwtextsController < ApplicationController
 
   before_action :set_twtext, only: [:edit, :update, :destroy]
 
+  def top
+    render 'top'
+  end
+
   def index
     @twtexts = Twtext.all
   end
