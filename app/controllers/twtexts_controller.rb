@@ -20,19 +20,16 @@ class TwtextsController < ApplicationController
     end
   end
 
-  def edit
-  end
-
-  def update
-    if @twtext.update(twtext_params)
-      redirect_to twtexts_path, notice: "つぶやきを編集しました"
-    else
-      render 'edit'
-    end
+  def confirm
+    @twtext = Twtext.new(twtext_params)
+    # バリデーション前にユーザIDを格納する
+    @twtext.user_id = current_user.id
+    render :new if @twtext.invalid?
   end
 
   def create
     @twtext = Twtext.new(twtext_params)
+    @twtext.user_id = current_user.id
     if @twtext.save
       # 一覧画面へ遷移し
       redirect_to twtexts_path, notice: "新しいつぶやきを投稿しました"
@@ -42,9 +39,15 @@ class TwtextsController < ApplicationController
     end
   end
 
-  def confirm
-    @twtext = Twtext.new(twtext_params)
-    render :new if @twtext.invalid?
+  def edit
+  end
+
+  def update
+    if @twtext.update(twtext_params)
+      redirect_to twtexts_path, notice: "つぶやきを編集しました"
+    else
+      render 'edit'
+    end
   end
 
   def destroy
