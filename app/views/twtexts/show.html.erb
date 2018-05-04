@@ -7,35 +7,47 @@
       </h2>
     </div>
 
-    <div class="list-group-item">
-      <div class="media">
+    <div class="list-group">
 
-        <div class="media-left">
-          <%= image_tag '/tw-icon.png' %>
-        </div>
-        <div class="media-body tw_content">
-          <%= @twtext.content %>
-        </div>
-        <div class="pull-left">
-          <span class="label label-default">投稿者：<%= @twtext.user.name %></span>
-        </div>
-        <div class="pull-right">
+      <div class="list-group-item">
+        <div class="media">
 
-          <%= link_to '編集', edit_twtext_path(@twtext.id), class: 'btn btn-default' %>
+          <div class="media-left">
+            <%= image_tag '/tw-icon.png' %>
+          </div>
+          <div class="media-body tw_content">
+            <%= @twtext.content %>
+          </div>
+          <div class="pull-left">
+            <span class="label label-default">投稿ユーザ：<%= @twtext.user.name %></span>
 
-          <%= link_to '削除', twtext_path(@twtext.id), class: 'btn btn-danger', method: :delete ,data: { confirm: 'つぶやきを本当に削除しますか？' } %>
-
-          <% unless @twtext.user == current_user %>
-            <% if @favorite.present? %>
-              <%= link_to 'お気に入りを解除する', favorite_path(twtext_id: @twtext.id), method: :delete, class: 'btn btn-warning' %>
-            <% else %>
-              <%= link_to 'お気に入りにする', favorites_path(twtext_id: @twtext.id), method: :post, class: 'btn btn-success' %>
+          </div>
+          <div class="pull-right">
+            <% if @twtext.user == current_user %>
+              <%= link_to '編集', edit_twtext_path(@twtext.id), class: 'btn btn-default' %>
+              <%= link_to '削除', twtext_path(@twtext.id), class: 'btn btn-danger', method: :delete ,data: { confirm: 'つぶやきを本当に削除しますか？' } %>
             <% end %>
-          <% end %>
+            <% unless @twtext.user == current_user %>
+              <% if @favorite.present? %>
+                <%= link_to 'お気に入りを解除する', favorite_path(twtext_id: @twtext.id), method: :delete, class: 'btn btn-warning' %>
+              <% else %>
+                <%= link_to 'お気に入りにする', favorites_path(twtext_id: @twtext.id), method: :post, class: 'btn btn-success' %>
+              <% end %>
+            <% end %>
 
+          </div>
         </div>
       </div>
-    </div>
 
+        <% if @twtext.favorite_users.present? %>
+          <div class="list-group-item">
+            <strong><%= @twtext.favorite_users.count %>人がお気に入り</strong>
+            <% @twtext.favorite_users.each do |favuser| %>
+              <span class="label label-success"><%= favuser.name %></span>
+            <% end %>
+          </div>
+        <% end %>
+
+    </div>
   </div>
 </div>

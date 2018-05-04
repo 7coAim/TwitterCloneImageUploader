@@ -21,5 +21,29 @@
     	<li class="list-group-item">メールアドレス：<%= @user.email %></li>
     </ul>
 
+    <div class="list-group">
+      <div class="list-group-item">
+        <strong>お気に入りのつぶやき</strong>
+      </div>
+      <% @user.favorite_twtexts.each do |twtext| %>
+        <div class="list-group-item">
+          <div class="media">
+            <div class="media-left">
+              <%= image_tag '/tw-icon.png' %>
+            </div>
+            <div class="media-body tw_content">
+              <%= twtext.content %>
+            </div>
+            <div class="pull-left">
+              <span class="label label-default">投稿ユーザ：<%= twtext.user.name %></span>
+            </div>
+            <div class="pull-right">
+              <%= link_to "詳細", twtext_path(twtext.id), class: 'btn btn-default' %>
+            </div>
+          </div>
+        </div>
+
+      <% end %>
+
   </div>
 </div>
