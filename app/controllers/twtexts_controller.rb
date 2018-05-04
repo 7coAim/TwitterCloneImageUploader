@@ -1,6 +1,6 @@
 class TwtextsController < ApplicationController
 
-  before_action :set_twtext, only: [:edit, :update, :destroy]
+  before_action :set_twtext, only: [:show, :edit, :update, :destroy]
   before_action :is_login, only: [:new, :edit, :show, :destroy]
 
   def top
@@ -53,6 +53,10 @@ class TwtextsController < ApplicationController
   def destroy
     @twtext.destroy
     redirect_to twtexts_path, notice: "つぶやきを削除しました"
+  end
+
+  def show
+    @favorite = current_user.favorites.find_by(twtext_id: @twtext.id)
   end
 
   private
