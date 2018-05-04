@@ -1,0 +1,38 @@
+<div class="row">
+  <div class="col-md-8 col-md-offset-2">
+
+    <div class="page-header">
+      <h2>ログイン画面
+        <small>Login form</small>
+      </h2>
+    </div>
+
+    <% flash.each do |key, value| %>
+      <div class="alert alert-warning alert-dismissible" role="alert">
+        <button type="button" class="close" data-dismiss="alert" aria-label="閉じる">
+          <span aria-hidden="true">×</span>
+        </button>
+        <%= content_tag(:div, value, class: "#{key}") %>
+      </div>
+    <% end %>
+
+    <%= form_with(scope: :session, url: sessions_path, local: true) do |f| %>
+
+      <div class="input-group input-group-lg">
+        <span class="input-group-addon login">メールアドレス</span>
+        <%= f.email_field :email, class: 'form-control', placeholder: "test@sample.com" %>
+      </div>
+      <br>
+      <div class="input-group input-group-lg">
+        <span class="input-group-addon login">パスワード</span>
+        <%= f.password_field :password, class: 'form-control', placeholder: "password" %>
+      </div>
+      <br>
+      <div class="pull-right">
+        <%= f.submit "ログイン", class: 'btn btn-primary btn-lg' %>
+      </div>
+
+    <% end %>
+
+  </div>
+</div>

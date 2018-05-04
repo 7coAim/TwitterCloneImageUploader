@@ -2,6 +2,12 @@ ja:
   activerecord:
     models:
       twtext: つぶやき
+      user: ユーザ
     attributes:
       twtext:
         content: つぶやき内容
+      user:
+        name: 名前
+        email: メールアドレス
+        password: パスワード
+        password_confirmation: パスワード（確認用）

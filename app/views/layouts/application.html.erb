@@ -26,11 +26,17 @@
             <ul class="nav navbar-nav">
               <li>
                 <a href="../">トップ</a>
-
               </li>
               <li>
                 <%= link_to "つぶやき一覧", twtexts_path %>
               </li>
+              <% if logged_in? %>
+                <li><%= link_to "マイページ", user_path(current_user.id) %></li>
+                <li><%= link_to "ログアウト", session_path(current_user.id), method: :delete %></li>
+              <% else %>
+                <li><%= link_to "新規ユーザ登録", new_user_path %></li>
+                <li><%= link_to "ログイン", new_session_path %></li>
+              <% end %>
             </ul>
           </div>
         </div>
@@ -38,11 +44,13 @@
     </header>
 
     <div class="container">
+
       <%= yield %>
+
     </div>
 
     <footer class="footer">
-      <p class="text-muted text-center">TwitterClone ＋Login</p>
+      <p class="text-muted text-center">TwitterClone ＋ Login</p>
       <p class="text-muted text-center">© 2018 Copyright Tomoyuki Kurosawa</p>
     </footer>
 

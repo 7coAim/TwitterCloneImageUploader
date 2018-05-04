@@ -1,0 +1,25 @@
+
+<div class="row">
+  <div class="col-md-8 col-md-offset-2">
+
+    <div class="page-header">
+      <h2><%= @user.name %>さんのページ
+        <small>Profile</small>
+      </h2>
+    </div>
+
+    <% if flash[:notice] %>
+      <div class="alert alert-success alert-dismissible" role="alert">
+        <button type="button" class="close" data-dismiss="alert" aria-label="閉じる">
+          <span aria-hidden="true">×</span></button>
+        <strong>お知らせ</strong> ： <%= flash[:notice] %>
+      </div>
+    <% end %>
+
+    <ul class="list-group">
+    	<li class="list-group-item">名前：<%= @user.name %></li>
+    	<li class="list-group-item">メールアドレス：<%= @user.email %></li>
+    </ul>
+
+  </div>
+</div>
