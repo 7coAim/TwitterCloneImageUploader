@@ -22,9 +22,12 @@
     </ul>
 
     <div class="list-group">
-      
+
       <div class="list-group-item">
-        <strong>お気に入りのつぶやき</strong>
+        <strong>
+          お気に入りのつぶやき
+          <span class="badge"><%= @user.favorite_twtexts.count %></span>
+        </strong>
       </div>
       <% @user.favorite_twtexts.each do |twtext| %>
         <div class="list-group-item">
