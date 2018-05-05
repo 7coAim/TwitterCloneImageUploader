@@ -36,6 +36,7 @@
             </div>
             <div class="pull-left">
               <span class="label label-default">投稿ユーザ：<%= twtext.user.name %></span>
+              <span class="label label-success"><%= "★" * twtext.favorite_users.count %></span>
             </div>
             <div class="pull-right">
               <%= link_to "詳細", twtext_path(twtext.id), class: 'btn btn-default' %>
