@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  resources :contacts
+
   get 'sessions/new'
 
   root to: 'twtexts#top'
@@ -16,6 +16,9 @@ Rails.application.routes.draw do
 
   resources :favorites, only: [:create, :destroy]
 
+  resources :contacts, only: [:new, :create]
+  get '/contacts', to: 'contacts#new'
+  
   if Rails.env.development?
     mount LetterOpenerWeb::Engine, at: "/letter_opener"
   end

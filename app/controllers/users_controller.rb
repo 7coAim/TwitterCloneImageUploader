@@ -1,4 +1,7 @@
 class UsersController < ApplicationController
+
+  before_action :is_login, only: [:show]
+
   def new
     @user = User.new
   end
@@ -16,13 +19,14 @@ class UsersController < ApplicationController
   end
 
   def show
-    @user = User.find(params[:id])
+    # ログインユーザのユーザ情報を取得する
+    @user = current_user
+    # @user = User.find(params[:id])
   end
 
   private
 
   def user_params
-    params.require(:user).permit(:name, :email, :password,
-                                 :password_confirmation)
+    params.require(:user).permit(:name, :email, :password,:password_confirmation)
   end
 end

@@ -25,11 +25,15 @@ class ContactsController < ApplicationController
   # POST /contacts.json
   def create
     @contact = Contact.new(contact_params)
-
+    # ログイン状態ならば、ログインユーザの情報を取得する
+    if logged_in?
+      @contact.name = current_user.name
+      @contact.email = current_user.email
+    end
     respond_to do |format|
       if @contact.save
-        ContactMailer.contact_mail(@contact).deliver  ##追記
-        format.html { redirect_to @contact, notice: 'Contact was successfully created.' }
+        ContactMailer.contact_mail(@contact).deliver #追記
+        format.html { redirect_to twtexts_path, notice: 'お問い合わせが完了しました >>> お問い合わせ受付完了のメールを送信しました' }
         format.json { render :show, status: :created, location: @contact }
       else
         format.html { render :new }

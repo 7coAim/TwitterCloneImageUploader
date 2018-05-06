@@ -32,7 +32,8 @@ class TwtextsController < ApplicationController
     @twtext.user_id = current_user.id
     if @twtext.save
       # 一覧画面へ遷移し
-      redirect_to twtexts_path, notice: "新しいつぶやきを投稿しました"
+      TwtextMailer.twtext_mail(@twtext).deliver #メール送信
+      redirect_to twtexts_path, notice: "新しいつぶやきを投稿しました >>> つぶやき完了のメールを送信しました"
     else
       # 入力フォームを再描画
       render 'new'
@@ -69,13 +70,6 @@ class TwtextsController < ApplicationController
   # idをキーとして値を取得するメソッド
   def set_twtext
     @twtext = Twtext.find(params[:id])
-  end
-
-  # 未ログインならログイン画面へリダイレクトさせるメソッド
-  def is_login
-    if !logged_in?
-      redirect_to sessions_new_path, notice: "ログインが必要な機能です"
-    end
   end
 
 end
