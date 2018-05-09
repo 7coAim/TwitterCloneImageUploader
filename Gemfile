@@ -37,6 +37,9 @@ gem 'bcrypt', '3.1.11'
 
 gem 'dotenv-rails'
 
+gem 'carrierwave'
+gem 'mini_magick'
+
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
