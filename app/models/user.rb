@@ -8,4 +8,5 @@ class User < ApplicationRecord
   has_many :twtexts, dependent: :destroy
   has_many :favorites, dependent: :destroy
   has_many :favorite_twtexts, through: :favorites, source: :twtext
+  mount_uploader :image, ImageUploader
 end

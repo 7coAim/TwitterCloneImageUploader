@@ -2,7 +2,8 @@
     <div class="media">
 
       <div class="media-left">
-        <%= image_tag '/tw-icon.png' %>
+        <%= image_tag('/tw-icon.png') unless twtext.user.image.url %>
+        <%= image_tag(twtext.user.image.url, :style => "width: 64px; height: 64px; object-fit: cover;") if twtext.user.image.url %>
       </div>
       <div class="media-body tw_content">
         <span class="label label-default">投稿ユーザ：<%= twtext.user.name %></span>

@@ -11,16 +11,36 @@
       <div class="alert alert-success alert-dismissible" role="alert">
         <button type="button" class="close" data-dismiss="alert" aria-label="閉じる">
           <span aria-hidden="true">×</span></button>
-        <strong>お知らせ</strong>
-        ：
-        <%= flash[:notice] %>
+        <strong>お知らせ</strong>：<%= flash[:notice] %>
       </div>
     <% end %>
 
-    <ul class="list-group">
-      <li class="list-group-item">名前：<%= @user.name %></li>
-      <li class="list-group-item">メールアドレス：<%= @user.email %></li>
-    </ul>
+    <div class="row">
+      <div class="hidden-xs col-sm-2">
+        <%= image_tag('/tw-icon.png', :style => "width: 83px; height: 83px; object-fit: cover;", :class => "img-thumbnail img-responsive") unless @user.image.url %>
+        <%= image_tag(@user.image.url, :style => "width: 100%; height: 83px; object-fit: cover;", :class => "img-thumbnail img-responsive") if @user.image.url %>
+      </div>
+      <div class="hidden-xs col-sm-10">
+        <ul class="list-group">
+          <li class="list-group-item">名前：<%= @user.name %></li>
+          <li class="list-group-item">メールアドレス：<%= @user.email %></li>
+        </ul>
+        <br>
+      </div>
+    </div>
+
+    <div class="visible-xs-block">
+      <div class="row">
+        <div class="col-xs-12">
+          <%= image_tag(@user.image.url, :style => "width: 100%; height: 100%; object-fit: cover;", :class => "img-thumbnail img-responsive") if @user.image.url %>
+          <br><br>
+          <ul class="list-group">
+            <li class="list-group-item">名前：<%= @user.name %></li>
+            <li class="list-group-item">メールアドレス：<%= @user.email %></li>
+          </ul>
+        </div>
+      </div>
+    </div>
 
     <!-- タブ・メニュー -->
     <ul class="nav nav-tabs">

@@ -39,6 +39,7 @@ gem 'dotenv-rails'
 
 gem 'carrierwave'
 gem 'mini_magick'
+#gem 'rmagick'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
