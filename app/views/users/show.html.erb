@@ -1,6 +1,6 @@
 <div class="row">
   <div class="col-md-8 col-md-offset-2">
-    
+
     <div class="page-header">
       <h2><%= @user.name %>さんのページ
         <small>Profile</small>
@@ -48,58 +48,17 @@
 
       <div class="tab-pane active" id="favorite_twtexts">
         <div class="list-group">
-
           <% @user.favorite_twtexts.each do |twtext| %>
-            <div class="list-group-item">
-              <div class="media">
-                <div class="media-left">
-                  <%= image_tag '/tw-icon.png' %>
-                </div>
-                <div class="media-body tw_content">
-                  <%= twtext.content %>
-                </div>
-                <div class="pull-left">
-                  <span class="label label-default">投稿ユーザ：<%= twtext.user.name %></span>
-                  <span class="label label-success"><%= "★" * twtext.favorite_users.count %></span>
-                </div>
-                <div class="pull-right">
-                  <%= link_to "詳細", twtext_path(twtext.id), class: 'btn btn-default' %>
-                </div>
-              </div>
-            </div>
+            <%= render :partial => "tw", :locals => { twtext: twtext } %>
           <% end %>
-
         </div>
       </div>
 
       <div class="tab-pane" id="my_twtexts">
         <div class="list-group">
-
           <% @user.twtexts.each do |twtext| %>
-            <div class="list-group-item">
-              <div class="media">
-
-                <div class="media-left">
-                  <%= image_tag '/tw-icon.png' %>
-                </div>
-                <div class="media-body tw_content">
-                  <%= twtext.content %>
-                </div>
-                <div class="pull-left">
-                  <span class="label label-default">投稿ユーザ：<%= twtext.user.name %></span>
-                  <span class="label label-success"><%= "★" * twtext.favorite_users.count %></span>
-                </div>
-                <div class="pull-right">
-                  <%= link_to "詳細", twtext_path(twtext.id), class: 'btn btn-default' %>
-                  <% if twtext.user == current_user %>
-                    <%= link_to '編集', edit_twtext_path(twtext.id), class: 'btn btn-default' %>
-                    <%= link_to '削除', twtext_path(twtext.id), class: 'btn btn-danger', method: :delete ,data: { confirm: 'つぶやきを本当に削除しますか？' } %>
-                  <% end %>
-                </div>
-              </div>
-            </div>
+            <%= render :partial => "tw", :locals => { twtext: twtext } %>
           <% end %>
-
         </div>
       </div>
 

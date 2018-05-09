@@ -31,6 +31,7 @@
                 <%= link_to "つぶやき一覧", twtexts_path %>
               </li>
               <% if logged_in? %>
+                <li><%= link_to 'つぶやく', new_twtext_path %></li>
                 <li><%= link_to "マイページ", user_path(current_user.id) %></li>
                 <li><%= link_to "ログアウト", session_path(current_user.id), method: :delete %></li>
               <% else %>
@@ -49,7 +50,7 @@
     <div class="container">
 
       <%= yield %>
-
+      <br>
     </div>
 
     <footer class="footer">

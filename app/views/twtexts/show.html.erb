@@ -16,11 +16,11 @@
             <%= image_tag '/tw-icon.png' %>
           </div>
           <div class="media-body tw_content">
-            <%= @twtext.content %>
+            <span class="label label-default">投稿ユーザ：<%= @twtext.user.name %></span>
+            <p><%= @twtext.content %></p>
+            <%= image_tag(@twtext.image.url, :class => "img-thumbnail", :width => "300") if @twtext.image.url %>
           </div>
           <div class="pull-left">
-            <span class="label label-default">投稿ユーザ：<%= @twtext.user.name %></span>
-
           </div>
           <div class="pull-right">
             <% if @twtext.user == current_user %>

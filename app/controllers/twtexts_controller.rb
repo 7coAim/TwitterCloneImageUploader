@@ -15,6 +15,8 @@ class TwtextsController < ApplicationController
     #ビューにデータを渡す(インスタンス変数を定義する)
     if params[:back]
       @twtext = Twtext.new(twtext_params)
+      # 画像の復元処理
+      #@twtext.image.retrieve_from_cache! params[:cache][:image]
     else
       @twtext = Twtext.new
     end
@@ -30,6 +32,8 @@ class TwtextsController < ApplicationController
   def create
     @twtext = Twtext.new(twtext_params)
     @twtext.user_id = current_user.id
+    # 画像の復元処理
+    @twtext.image.retrieve_from_cache! params[:cache][:image]
     if @twtext.save
       # 一覧画面へ遷移し
       TwtextMailer.twtext_mail(@twtext).deliver #メール送信
@@ -64,7 +68,7 @@ class TwtextsController < ApplicationController
 
   # 許可するパラメータを指定するメソッド
   def twtext_params
-    params.require(:twtext).permit(:content)
+    params.require(:twtext).permit(:content, :image, :image_cache)
   end
 
   # idをキーとして値を取得するメソッド
